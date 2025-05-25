@@ -2,7 +2,7 @@
   "rewrites": [
     {
       "source": "/badge",
-      "destination": "/api/studienfortschritt"
+      "destination": "study-process-api.js"
     }
   ]
 }
