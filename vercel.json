@@ -2,7 +2,7 @@
   "rewrites": [
     {
       "source": "/badge",
-      "destination": "/api/badge"
+      "destination": "/api/badge.js"
     }
   ]
 }
