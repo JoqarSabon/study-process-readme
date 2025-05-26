@@ -1,7 +1,26 @@
 {
-  "name": "study-progress-api",
+  "name": "vercel-badge-generator",
   "version": "1.0.0",
+  "description": "A project to generate badges based on student course data using Vercel serverless functions.",
+  "main": "api/badge.js",
   "scripts": {
-    "dev": "vercel dev"
-  }
+    "dev": "vercel dev",
+    "build": "vercel build",
+    "start": "vercel start"
+  },
+  "dependencies": {
+    "express": "^4.17.1"
+  },
+  "devDependencies": {
+    "vercel": "^23.0.0"
+  },
+  "keywords": [
+    "vercel",
+    "badge",
+    "svg",
+    "student",
+    "courses"
+  ],
+  "author": "Your Name",
+  "license": "MIT"
 }

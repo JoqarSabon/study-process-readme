@@ -1,0 +1,11 @@
+# Contents of the file: /vercel-badge-generator/vercel-badge-generator/.vercelignore
+
+node_modules
+*.log
+*.env
+public/index.html
+src/studentData.js
+src/generateBadge.js
+api/badge.js
+README.md
+package.json
