@@ -1,10 +1,22 @@
 const generateBadge = require('../src/generateBadge');
 
 module.exports = async (req, res) => {
+  // Erlaube sowohl POST als auch OPTIONS (für CORS)
+  if (req.method === 'OPTIONS') {
+    res.setHeader('Access-Control-Allow-Origin', '*');
+    res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
+    res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
+    res.status(204).end();
+    return;
+  }
+
   if (req.method !== 'POST') {
     res.status(405).send('Method Not Allowed');
     return;
   }
+
+  // CORS Header setzen (optional, falls du von anderer Domain testest)
+  res.setHeader('Access-Control-Allow-Origin', '*');
 
   let data = req.body;
   if (!data || Object.keys(data).length === 0) {
@@ -30,7 +42,6 @@ module.exports = async (req, res) => {
     res.status(500).send('Internal Server Error');
   }
 };
-
 /*const studentData = require('../src/studentData');
 const generateBadge = require('../src/generateBadge');
 
