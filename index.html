@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vercel Badge Generator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f4f4f4;
+        }
+        #badge-container {
+            margin: 20px;
+        }
+        input {
+            margin: 5px;
+            padding: 10px;
+            width: 200px;
+        }
+        button {
+            padding: 10px 15px;
+            background-color: #4caf50;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <h1>Study Progress</h1>
+    <div>
+        <input type="text" id="studentName" placeholder="Student Name" />
+        <input type="text" id="program" placeholder="Program" />
+        <input type="number" id="targetCPS" placeholder="Target CPS" />
+        <button id="generateBadge">Generate Badge</button>
+    </div>
+    <div id="badge-container"></div>
+
+    <script>
+        document.getElementById('generateBadge').addEventListener('click', async () => {
+            const name = document.getElementById('studentName').value;
+            const program = document.getElementById('program').value;
+            const targetCPS = parseInt(document.getElementById('targetCPS').value, 10);
+
+            const response = await fetch('/api/badge', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ name, program, targetCPS }),
+            });
+
+            if (response.ok) {
+                const svg = await response.text();
+                document.getElementById('badge-container').innerHTML = svg;
+            } else {
+                document.getElementById('badge-container').innerHTML = '<p>Error generating badge. Please check your input.</p>';
+            }
+        });
+    </script>
+</body>
+</html>
